@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Zoom.Services;
 
 namespace Zoom
 {
@@ -31,6 +32,7 @@ namespace Zoom
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Zoom", Version = "v1" });
             });
+            services.AddScoped<IZoomService, ZoomService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
