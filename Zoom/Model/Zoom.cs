@@ -40,7 +40,7 @@ namespace Zoom.Model
         public bool has_recording { get; set; }
         public bool has_voicemail { get; set; }
         public string call_id { get; set; }
-        public Owner? owner { get; set; }
+        public Owner owner { get; set; }
         public string caller_country_code { get; set; }
         public string caller_country_iso_code { get; set; }
         public string callee_did_number { get; set; }
