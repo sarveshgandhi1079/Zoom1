@@ -64,6 +64,7 @@ namespace Zoom.Controllers
                     worksheet.Cell(currentRow, 25).Value = "CalleeDidNumber";
                     worksheet.Cell(currentRow, 26).Value = "CalleeCountryCode";
                     worksheet.Cell(currentRow, 27).Value = "CalleeCountryISOCode";
+                    worksheet.Cell(currentRow, 28).Value = "ActId";
 
                     foreach (var logs in call_Logs)
                     {
@@ -86,8 +87,8 @@ namespace Zoom.Controllers
                         worksheet.Cell(currentRow, 16).Value = logs.has_recording;
                         worksheet.Cell(currentRow, 17).Value = logs.has_voicemail;
                         worksheet.Cell(currentRow, 18).Value = logs.call_id;
-                        worksheet.Cell(currentRow, 19).Value = logs.owner==null?" ":logs.owner.type;
-                        worksheet.Cell(currentRow, 20).Value = logs.owner==null?" ":logs.owner.id ;
+                        worksheet.Cell(currentRow, 19).Value = logs.owner == null ? " " : logs.owner.type;
+                        worksheet.Cell(currentRow, 20).Value = logs.owner == null ? " " : logs.owner.id;
                         worksheet.Cell(currentRow, 21).Value = logs.owner == null ? " " : logs.owner.name;
                         worksheet.Cell(currentRow, 22).Value = logs.owner == null ? " " : logs.owner.extension_number;
                         worksheet.Cell(currentRow, 23).Value = logs.caller_country_code;
@@ -95,6 +96,7 @@ namespace Zoom.Controllers
                         worksheet.Cell(currentRow, 25).Value = logs.callee_did_number;
                         worksheet.Cell(currentRow, 26).Value = logs.callee_country_code;
                         worksheet.Cell(currentRow, 27).Value = logs.callee_country_iso_code;
+                        worksheet.Cell(currentRow, 28).Value = logs.actId;
                     }
 
 
@@ -109,12 +111,26 @@ namespace Zoom.Controllers
                     }
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                throw ;
+                throw;
             }
         }
-       
+
+        [HttpPost]
+        [Route("GetReports")]
+        public async Task<IActionResult> GetReports()
+        {
+            try
+            {
+                //var responce= await _zoomService.GetReports();
+                //return Ok(responce);
+                return Ok();
+            }
+            catch (Exception ex)
+            { 
+                throw;
+            }
+        }
     }
-    
 }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Zoom.DBContext;
 using Zoom.Services;
 
 namespace Zoom
@@ -33,6 +35,7 @@ namespace Zoom
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Zoom", Version = "v1" });
             });
             services.AddScoped<IZoomService, ZoomService>();
+            services.AddDbContext<TS2Context>(options => options.UseSqlServer(Configuration.GetConnectionString("AzureSql6TS2")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
